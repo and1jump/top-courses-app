@@ -10,6 +10,7 @@ import React, {
 import { Header } from "./Header/Header";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
+import { AppContextProvider, IAppContext } from "../context/app.context";
 // import { AppContextProvider, IAppContext } from "../context/app.context";
 // import { Up } from "../components";
 
@@ -41,7 +42,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       <Header className={styles.header} />
       <Sidebar className={styles.sidebar} />
       <main
-        //   className={styles.body}
+        className={styles.body}
         //   ref={bodyRef}
         tabIndex={0}
         role="main"
@@ -54,29 +55,16 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
   );
 };
 
-// export const withLayout = <T extends Record<string, unknown> & IAppContext>
-// (
-//   Component: FunctionComponent<T>
-// ) => {
-//   return function withLayoutComponent(props: T): JSX.Element {
-//     return (
-//       <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
-//         <Layout>
-//           <Component {...props} />
-//         </Layout>
-//       </AppContextProvider>
-//     );
-//   };
-// };
-
-export const withLayout = <T extends Record<string, unknown>>(
+export const withLayout = <T extends Record<string, unknown> & IAppContext>(
   Component: FunctionComponent<T>
 ) => {
   return function withLayoutComponent(props: T): JSX.Element {
     return (
-      <Layout>
-        <Component {...props} />
-      </Layout>
+      <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      </AppContextProvider>
     );
   };
 };

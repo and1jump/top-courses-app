@@ -23,7 +23,7 @@ export const Tag = ({
       })}
       {...props}
     >
-      {href ? <a href={href}>{children}</a> : <span>{children}</span>}
+      {href ? <a href={href}>{children}</a> : <>{children}</>}
     </div>
   );
 };

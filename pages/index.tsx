@@ -20,11 +20,6 @@ function Home({ menu }: HomeProps): JSX.Element {
       <Typography size="m">Тест текста</Typography>
       <Typography size="l">Тест текста</Typography>
       <Rating rating={rating} isEditable setRating={setRating} />
-      <ul>
-        {menu.map(m => (
-          <li key={m._id.secondCategory}>{m._id.secondCategory}</li>
-        ))}
-      </ul>
     </div>
   );
 }
