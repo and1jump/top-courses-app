@@ -3,16 +3,16 @@ import {
   Htag,
   //   P,
   //   Product,
-  //   Sort,
+  Sort,
   Tag,
   HhData
 } from "../../components";
 import { TopPageComponentProps } from "./TopPageComponent.props";
 import styles from "./TopPageComponent.module.css";
 import { TopLevelCategory } from "../../interfaces/page.interface";
-// import { SortEnum } from "../../components/Sort/Sort.props";
+import { SortEnum } from "../../components/Sort/Sort.props";
 import { useEffect, useReducer } from "react";
-// import { sortReducer } from "./sort.reducer";
+import { sortReducer } from "./sort.reducer";
 // import { useReducedMotion } from "framer-motion";
 
 export const TopPageComponent = ({
@@ -20,6 +20,15 @@ export const TopPageComponent = ({
   products,
   firstCategory
 }: TopPageComponentProps) => {
+  const [{ products: sortedProducts, sort }, dispathSort] = useReducer(
+    sortReducer,
+    { products, sort: SortEnum.Rating }
+  );
+
+  const setSort = (sort: SortEnum) => {
+    dispathSort({ type: sort });
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -29,19 +38,21 @@ export const TopPageComponent = ({
             {products.length}
           </Tag>
         )}
-        {/* <Sort sort={sort} setSort={setSort} /> */}
+        <Sort sort={sort} setSort={setSort} />
       </div>
-      {/* <div role="list">
+      <div role="list">
         {sortedProducts &&
-          sortedProducts.map(p => (
-            <Product
-              role="listitem"
-              layout={shouldReduceMotion ? false : true}
-              key={p._id}
-              product={p}
-            />
+          sortedProducts.map((p) => (
+            // <Product
+            //   role="listitem"
+            //   layout={shouldReduceMotion ? false : true}
+            //   key={p._id}
+            //   product={p}
+            // />
+
+            <div key={p._id}>{p.title}</div>
           ))}
-      </div> */}
+      </div>
       <div className={styles.hhTitle}>
         <Htag tag="h2">Вакансии - {page.category}</Htag>
         <Tag color="red" size="m">
@@ -64,7 +75,7 @@ export const TopPageComponent = ({
         />
       )}
       <Htag tag="h2">Получаемые навыки</Htag>
-      {page.tags.map(t => (
+      {page.tags.map((t) => (
         <Tag key={t} color="primary">
           {t}
         </Tag>
