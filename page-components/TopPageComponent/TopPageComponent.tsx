@@ -2,7 +2,7 @@ import {
   Advantages,
   Htag,
   //   P,
-  //   Product,
+  Product,
   Sort,
   Tag,
   HhData
@@ -43,14 +43,13 @@ export const TopPageComponent = ({
       <div role="list">
         {sortedProducts &&
           sortedProducts.map((p) => (
-            // <Product
-            //   role="listitem"
-            //   layout={shouldReduceMotion ? false : true}
-            //   key={p._id}
-            //   product={p}
-            // />
-
-            <div key={p._id}>{p.title}</div>
+            <Product
+              role="listitem"
+              // layout={shouldReduceMotion ? false : true}
+              layout={true}
+              key={p._id}
+              product={p}
+            />
           ))}
       </div>
       <div className={styles.hhTitle}>
