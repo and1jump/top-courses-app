@@ -11,10 +11,9 @@ import Image from "next/image";
 import { ForwardedRef, forwardRef, useRef, useState } from "react";
 import { Review } from "../Review/Review";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
-export const Product =
-  // motion(
+export const Product = motion(
   forwardRef(
     (
       { product, className, ...props }: ProductProps,
@@ -130,28 +129,28 @@ export const Product =
               </Button>
             </div>
           </Card>
-          {/* <motion.div
+          <motion.div
             animate={isReviewOpened ? "visible" : "hidden"}
             variants={variants}
             initial="hidden"
-          > */}
-          <Card
-            color="blue"
-            className={styles.reviews}
-            ref={reviewRef}
-            tabIndex={isReviewOpened ? 0 : -1}
           >
-            {product.reviews.map((r) => (
-              <div key={r._id}>
-                <Review review={r} />
-                <Divider />
-              </div>
-            ))}
-            <ReviewForm productId={product._id} isOpened={isReviewOpened} />
-          </Card>
-          {/* </motion.div> */}
+            <Card
+              color="blue"
+              className={styles.reviews}
+              ref={reviewRef}
+              tabIndex={isReviewOpened ? 0 : -1}
+            >
+              {product.reviews.map((r) => (
+                <div key={r._id}>
+                  <Review review={r} />
+                  <Divider />
+                </div>
+              ))}
+              <ReviewForm productId={product._id} isOpened={isReviewOpened} />
+            </Card>
+          </motion.div>
         </div>
       );
     }
-  );
-// );
+  )
+);

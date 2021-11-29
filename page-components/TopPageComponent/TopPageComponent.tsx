@@ -1,19 +1,11 @@
-import {
-  Advantages,
-  Htag,
-  //   P,
-  Product,
-  Sort,
-  Tag,
-  HhData
-} from "../../components";
+import { Advantages, Htag, Product, Sort, Tag, HhData } from "../../components";
 import { TopPageComponentProps } from "./TopPageComponent.props";
 import styles from "./TopPageComponent.module.css";
 import { TopLevelCategory } from "../../interfaces/page.interface";
 import { SortEnum } from "../../components/Sort/Sort.props";
 import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
-// import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 
 export const TopPageComponent = ({
   page,
@@ -24,6 +16,7 @@ export const TopPageComponent = ({
     sortReducer,
     { products, sort: SortEnum.Rating }
   );
+  const shouldReduceMotion = useReducedMotion();
 
   const setSort = (sort: SortEnum) => {
     dispathSort({ type: sort });
@@ -49,8 +42,7 @@ export const TopPageComponent = ({
           sortedProducts.map((p) => (
             <Product
               role="listitem"
-              // layout={shouldReduceMotion ? false : true}
-              layout={true}
+              layout={shouldReduceMotion ? false : true}
               key={p._id}
               product={p}
             />
