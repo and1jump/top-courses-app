@@ -6,6 +6,7 @@ import { SortEnum } from "../../components/Sort/Sort.props";
 import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
 import { useReducedMotion } from "framer-motion";
+import { useScrollY } from "../../hooks/useScrollY";
 
 export const TopPageComponent = ({
   page,
@@ -16,6 +17,7 @@ export const TopPageComponent = ({
     sortReducer,
     { products, sort: SortEnum.Rating }
   );
+  const y = useScrollY();
   const shouldReduceMotion = useReducedMotion();
 
   const setSort = (sort: SortEnum) => {

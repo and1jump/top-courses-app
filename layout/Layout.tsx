@@ -12,7 +12,7 @@ import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
 import { AppContextProvider, IAppContext } from "../context/app.context";
 // import { AppContextProvider, IAppContext } from "../context/app.context";
-// import { Up } from "../components";
+import { Up } from "../components";
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   //   const [isSkipLinkDisplayed, setIsSkipLinkDisplayed] =
@@ -50,7 +50,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
         {children}
       </main>
       <Footer className={styles.footer} />
-      {/* <Up /> */}
+      <Up />
     </div>
   );
 };
