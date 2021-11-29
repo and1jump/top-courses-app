@@ -87,7 +87,7 @@ export const Product =
             </div>
             <div className={styles.rateTitle}>
               <a href="#ref" onClick={scrollToReview}>
-                {product.reviewCount}{" "}
+                {product.reviewCount}
                 {declOfNum(product.reviewCount, ["отзыв", "отзыва", "отзывов"])}
               </a>
             </div>
